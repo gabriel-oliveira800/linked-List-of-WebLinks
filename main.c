@@ -16,8 +16,12 @@ int main()
     add_start(&my_links,link2,keyword);
     add_start(&my_links,link3,keyword);
 
+    //add_end(&my_links,link3,keyword);
+
+
     toString(my_links);
 
     close(my_links);
+
     return 0;
 }

@@ -14,7 +14,8 @@ void add_start(WebLinks** list_link, char* link, char* keyword);
 void add_middle(WebLinks** list_link, char* link, char* keyword);
 void add_end(WebLinks** list_link, char* link, char* keyword);
 
-void toString(WebLinks* list_link);
+int list_null(WebLinks* list_links);
 
+void toString(WebLinks* list_link);
 void close(WebLinks* list_link);
 #endif // WEBLINKS_H_INCLUDED

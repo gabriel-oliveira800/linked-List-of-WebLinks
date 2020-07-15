@@ -24,11 +24,13 @@ WebLinks* init()
     return NULL;
 }
 
-void add_start(WebLinks** list_link, char* link, char* keyword){
+void add_start(WebLinks** list_link, char* link, char* keyword)
+{
     WebLinks* new_list = (WebLinks*) malloc(sizeof(WebLinks));
     Web* data = (Web*) malloc(sizeof(Web));
 
-    if(new_list != NULL && data != NULL){
+    if(new_list != NULL && data != NULL)
+    {
 
         data->link =link;
         data->keyword = keyword;
@@ -40,16 +42,48 @@ void add_start(WebLinks** list_link, char* link, char* keyword){
     }
 }
 
-void toString(WebLinks* list_links){
-    while(list_links != NULL){
-        printf("Site: %s keyword: (%s)\n", list_links->data->link, list_links->data->keyword);
-        list_links = list_links->prox;
-    }
+void add_middle(WebLinks** list_links, char* link, char* keyword)
+{
 }
 
-void close(WebLinks* list_links){
-    while(list_links != NULL){
-        free(list_links);
-        list_links = list_links->prox;
+void add_end(WebLinks** list_links, char* link, char* keyword)
+{
+    WebLinks* aux = *list_links;
+    WebLinks* final_item;
+
+    while(aux != NULL)
+    {
+        final_item = aux;
+        aux = aux->prox;
+    }
+    printf("%s\n", final_item->data->link);
+}
+
+void toString(WebLinks* list_links)
+{
+    if(list_null(list_links) == 0) return 0;
+
+    WebLinks* aux = list_links;
+
+    while(aux != NULL)
+    {
+        printf("Site: %s keyword: (%s)\n", aux->data->link, aux->data->keyword);
+        aux = aux->prox;
+    }
+}
+int list_null(WebLinks* list_links)
+{
+    if(list_links == NULL) return 1;
+    else return 0;
+}
+void close(WebLinks* list_links)
+{
+    WebLinks* aux = list_links;
+    while(aux != NULL)
+    {
+        WebLinks* clear_list = aux->prox;
+
+        free(aux);
+        aux  = clear_list;
     }
 }

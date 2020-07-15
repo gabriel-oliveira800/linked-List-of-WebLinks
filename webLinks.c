@@ -1,6 +1,6 @@
 #include <stdio.h>
 #include <stdlib.h>
-#include <string.h>
+#include <malloc.h>
 
 struct web
 {
@@ -8,13 +8,15 @@ struct web
     char* keyword;
 };
 
+typedef struct web Web;
+
 struct webLinks
 {
-    web* data;
+    Web* data;
     struct webLinks* prox;
 };
 
-typedef struct web Web;
+
 typedef struct webLinks WebLinks;
 
 WebLinks* init()
@@ -24,24 +26,30 @@ WebLinks* init()
 
 void add_start(WebLinks** list_link, char* link, char* keyword){
     WebLinks* new_list = (WebLinks*) malloc(sizeof(WebLinks));
+    Web* data = (Web*) malloc(sizeof(Web));
 
-    if(new_list != NULL){
-        Web* data = (Web*) malloc(sizeof(Web));
+    if(new_list != NULL && data != NULL){
 
-        strcpy(data->link, link);
-        strcpy(data->keyword, keyword);
+        data->link =link;
+        data->keyword = keyword;
 
         new_list->data = data;
 
         new_list->prox = *list_link;
         *list_link = new_list;
-
     }
 }
 
 void toString(WebLinks* list_links){
     while(list_links != NULL){
-        printf("Site: %s keyword: (%s)", list_links->data->link, list_links->data->keyword);
+        printf("Site: %s keyword: (%s)\n", list_links->data->link, list_links->data->keyword);
+        list_links = list_links->prox;
+    }
+}
+
+void close(WebLinks* list_links){
+    while(list_links != NULL){
+        free(list_links);
         list_links = list_links->prox;
     }
 }

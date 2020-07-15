@@ -1,0 +1,15 @@
+# depslib dependency file v1.0
+1594835315 source:c:\users\gabri\documents\projects c\linked list of weblinks\main.c
+	<stdio.h>
+	<stdlib.h>
+	"webLinks.h"
+
+1594835322 c:\users\gabri\documents\projects c\linked list of weblinks\weblinks.h
+	<stdio.h>
+	<stdlib.h>
+	<malloc.h>
+
+1594834497 source:c:\users\gabri\documents\projects c\linked list of weblinks\weblinks.c
+	<stdio.h>
+	<stdlib.h>
+
